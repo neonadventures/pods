@@ -45,11 +45,11 @@ Pod::Spec.new do |s|
   end
 
   s.prepare_command = <<-CMD
-    # cd libosmscout
-    # ./autogen.sh && ./configure --disable-see2-support && make
-    # export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$(pwd)
-    # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)/src/.libs
-    # cd ..
+    cd libosmscout
+    ./autogen.sh && ./configure --disable-see2-support && make
+    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$(pwd)
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)/src/.libs
+    cd ..
     cp -rf libosmscout/include/osmscout /tmp
   CMD
 
