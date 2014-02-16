@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "osmscout"
-  s.version      = "0.1.0"
+  s.version      = "0.0.1"
   s.summary      = "libosmscout offers high-level interfaces to offline rendering and routing using OpenStreetMap (OSM) data."
 
   s.description  = <<-DESC
@@ -45,12 +45,12 @@ Pod::Spec.new do |s|
   end
 
   s.prepare_command = <<-CMD
-    cp -rf libosmscout/include/osmscout /tmp
     cd libosmscout
     ./autogen.sh && ./configure --disable-see2-support && make
     export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$(pwd)
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)/src/.libs
     cd ..
+    cp -rf libosmscout/include/osmscout /tmp
   CMD
 
 end
