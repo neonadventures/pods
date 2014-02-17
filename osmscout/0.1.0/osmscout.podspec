@@ -39,7 +39,7 @@ Pod::Spec.new do |s|
 
   s.post_install do |installer_representation|
     headers_path = File.join(installer_representation.sandbox.root, "Headers")
-    FileUtils.mkdir(headers_path)
+    FileUtils.mkdir(headers_path) if not File.exists?(headers_path)
     FileUtils.cp_r("/tmp/osmscout", headers_path)
     FileUtils.rm_rf("/tmp/osmscout")
   end
