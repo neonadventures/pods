@@ -37,11 +37,14 @@ Pod::Spec.new do |s|
   s.header_mappings_dir = 'libosmscout/include/osmscout'
   s.compiler_flags = '-I/usr/local/include'
 
+  s.dependency 'marisa'
+
   s.post_install do |installer_representation|
+    tmp_path = "/tmp/osmscout"
     headers_path = File.join(installer_representation.sandbox.root, "Headers")
     FileUtils.mkdir(headers_path) if not File.exists?(headers_path)
-    FileUtils.cp_r("/tmp/osmscout", headers_path)
-    FileUtils.rm_rf("/tmp/osmscout")
+    FileUtils.cp_r("/tmp/osmscout", headers_path) if File.exists?(tmp_path)
+    FileUtils.rm_rf("/tmp/osmscout") if File.exists?(tmp_path)
   end
 
   s.prepare_command = <<-CMD
